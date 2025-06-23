@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Favorilerim - Autozone</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+<div class="container">
+<div class="logo"><img alt="Logo" class="site-logo" src="images/logo.png"/></div>
+<nav class="nav">
+<a class="nav-link" href="index.html">Ana Sayfa</a>
+<a class="nav-link" href="listings.html">İlanlar</a>
+<a class="nav-link" href="create.html">İlan Ver</a>
+<a class="nav-link active" href="favorites.html">Favorilerim</a>
+<a class="nav-link" href="login.html">Giriş Yap</a>
+<a class="nav-link" href="register.html">Üye Ol</a>
+</nav>
+</div>
+</header>
+<div class="page-header">
+<div class="container">
+<h1><i class="fas fa-heart"></i> Favori İlanlarım</h1>
+<p>Beğendiğiniz ilanlar burada listelenir</p>
+</div>
+</div>
+<div class="container mt-2 mb-2">
+<div class="cars-listing cars-grid" id="favoritesContainer">
+<!-- Favori ilanlar buraya yüklenecek -->
+</div>
+</div>
+<footer class="footer">
+<div class="container">
+<p class="text-center">© 2025 Autozone</p>
+</div>
+</footer>
+<script src="js/script.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", renderFavorites);
+  </script>
+</body>
+</html>

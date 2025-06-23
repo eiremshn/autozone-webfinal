@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Autozone - Araba Al Sat</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+<div class="container">
+<div class="logo"><img alt="Logo" class="site-logo" src="images/logo.png"/></div>
+<nav class="nav">
+<a class="nav-link active" href="index.html">Ana Sayfa</a>
+<a class="nav-link" href="listings.html">İlanlar</a>
+<a class="nav-link" href="login.html">Giriş Yap</a>
+<a class="nav-link" href="register.html">Üye Ol</a>
+</nav>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="hero">
+<div class="hero-content">
+<h1>Türkiye'nin En Büyük Araba Pazarı</h1>
+<p>Binlerce araç ilanı arasından size en uygun olanı bulun</p>
+<div class="hero-buttons">
+<a class="btn btn-primary" href="listings.html">İlanları Gör</a>
+<a class="btn btn-secondary" href="create.html">İlan Ver</a>
+</div>
+</div>
+</section>
+<!-- Quick Search -->
+<section class="quick-search">
+<div class="container">
+<h2>Hızlı Arama</h2>
+<div class="search-form">
+<select id="brand">
+<option value="">Marka Seçin</option>
+<option value="Audi">Audi</option>
+<option value="BMW">BMW</option>
+<option value="Ford">Ford</option>
+<option value="Honda">Honda</option>
+<option value="Mercedes">Mercedes</option>
+<option value="Renault">Renault</option>
+<option value="Toyota">Toyota</option>
+<option value="Volkswagen">Volkswagen</option>
+</select>
+<select id="model">
+<option value="">Model Seçin</option>
+</select>
+<select id="year">
+<option value="">Yıl</option>
+<option value="2024">2024</option>
+<option value="2023">2023</option>
+<option value="2022">2022</option>
+<option value="2021">2021</option>
+<option value="2020">2020</option>
+<option value="2019">2019</option>
+<option value="2018">2018</option>
+<option value="2017">2017</option>
+</select>
+<input id="priceMin" placeholder="Min Fiyat" type="text"/>
+<input id="priceMax" placeholder="Max Fiyat" type="text"/>
+<button class="btn btn-primary" onclick="searchCars()">
+<i class="fas fa-search"></i> Ara
+                </button>
+</div>
+</div>
+</section>
+<!-- Popular Brands -->
+<section class="popular-brands">
+<div class="container">
+<h2>Popüler Markalar</h2>
+<div class="brands-grid">
+<div class="brand-item" onclick="searchByBrand('Toyota')">
+<i class="fas fa-car"></i>
+<span>Toyota</span>
+<small>245 ilan</small>
+</div>
+<div class="brand-item" onclick="searchByBrand('BMW')">
+<i class="fas fa-car"></i>
+<span>BMW</span>
+<small>189 ilan</small>
+</div>
+<div class="brand-item" onclick="searchByBrand('Mercedes')">
+<i class="fas fa-car"></i>
+<span>Mercedes</span>
+<small>156 ilan</small>
+</div>
+<div class="brand-item" onclick="searchByBrand('Audi')">
+<i class="fas fa-car"></i>
+<span>Audi</span>
+<small>134 ilan</small>
+</div>
+<div class="brand-item" onclick="searchByBrand('Honda')">
+<i class="fas fa-car"></i>
+<span>Honda</span>
+<small>198 ilan</small>
+</div>
+<div class="brand-item" onclick="searchByBrand('Ford')">
+<i class="fas fa-car"></i>
+<span>Ford</span>
+<small>176 ilan</small>
+</div>
+<div class="brand-item" onclick="searchByBrand('Renault')">
+<i class="fas fa-car"></i>
+<span>Renault</span>
+<small>165 ilan</small>
+</div>
+<div class="brand-item" onclick="searchByBrand('Volkswagen')">
+<i class="fas fa-car"></i>
+<span>Volkswagen</span>
+<small>142 ilan</small>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Cars -->
+<section class="featured-cars">
+<div class="container">
+<div class="text-center">
+<a class="btn btn-primary" href="listings.html">Tüm İlanları Gör</a>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="footer">
+<div class="container">
+<div class="footer-content">
+<div class="footer-section">
+<h3>Autozone</h3>
+<p>Türkiye'nin en güvenilir araba alım satım platformu</p>
+</div>
+<div class="footer-section">
+<h4>Hızlı Linkler</h4>
+<ul>
+<li><a href="index.html">Ana Sayfa</a></li>
+<li><a href="listings.html">İlanlar</a></li>
+<li><a href="login.html">Giriş Yap</a></li>
+<li><a href="register.html">Üye Ol</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4>İletişim</h4>
+<p><i class="fas fa-phone"></i> 0212 123 45 67</p>
+<p><i class="fas fa-envelope"></i> info@autozone.com</p>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2025 Autozone. Tüm hakları saklıdır.</p>
+</div>
+</div>
+</footer>
+<script src="js/script.js"></script>
+<script>
+        const user = JSON.parse(localStorage.getItem("currentUser"));
+        if (user) {
+            const nav = document.querySelector(".nav");
+            const welcome = document.createElement("span");
+            welcome.textContent = `👋 ${user.firstName}`;
+            welcome.style.marginLeft = "1rem";
+            nav.appendChild(welcome);
+        }
+    </script>
+<script>
+            document.addEventListener("DOMContentLoaded", () => {
+              const user = JSON.parse(localStorage.getItem("currentUser"));
+              const navLinks = document.querySelector(".nav");
+            
+              if (!navLinks) return;
+            
+              if (user) {
+                const logoutLink = document.createElement("a");
+                logoutLink.href = "#";
+                logoutLink.className = "nav-link";
+                logoutLink.textContent = "Çıkış Yap";
+                logoutLink.addEventListener("click", () => {
+                  localStorage.removeItem("currentUser");
+                  alert("Çıkış yapıldı.");
+                  window.location.href = "index.html";
+                });
+            
+                // “Giriş Yap” bağlantısını bulup onun yerine koy
+                const loginLink = [...navLinks.children].find(a => a.textContent.includes("Giriş Yap"));
+                if (loginLink) {
+        const registerLink = [...navLinks.children].find(a => a.textContent.includes("Üye Ol"));
+        if (registerLink) {
+            navLinks.removeChild(registerLink);
+        }
+
+                  navLinks.replaceChild(logoutLink, loginLink);
+                } else {
+                  navLinks.appendChild(logoutLink); // yedek
+                }
+              }
+            });
+            </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const allCars = (window.cars || []).concat(JSON.parse(localStorage.getItem("userCars") || "[]"));
+        const brandCounts = {};
+
+        allCars.forEach(car => {
+            brandCounts[car.brand] = (brandCounts[car.brand] || 0) + 1;
+        });
+
+        document.querySelectorAll(".brand-item span").forEach(span => {
+            const brand = span.textContent.trim();
+            const count = brandCounts[brand] || 0;
+            const small = span.nextElementSibling;
+            if (small && small.tagName === "SMALL") {
+                small.textContent = count + " ilan";
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

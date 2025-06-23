@@ -1,0 +1,169 @@
+<!-- create.html -->
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>İlan Ver - Autozone</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="header">
+<div class="container">
+<div class="logo"><img alt="Logo" class="site-logo" src="images/logo.png"/></div>
+<nav class="nav">
+<a class="nav-link" href="index.html">Ana Sayfa</a>
+<a class="nav-link" href="listings.html">İlanlar</a>
+<a class="nav-link" href="login.html">Giriş Yap</a>
+<a class="nav-link" href="register.html">Üye Ol</a>
+</nav>
+</div>
+</header>
+<div class="container form-container">
+<h2>İlan Ver</h2>
+<form id="createListingForm">
+<div class="form-group">
+<label for="brand">Marka</label>
+<select id="brand" required="">
+<option value="">Seçiniz</option>
+<option value="Toyota">Toyota</option>
+<option value="BMW">BMW</option>
+<option value="Honda">Honda</option>
+<option value="Mercedes">Mercedes</option>
+</select>
+</div>
+<div class="form-group">
+<label for="model">Model</label>
+<select id="model" required="">
+<option value="">Model Seçin</option>
+</select>
+</div>
+<div class="form-group">
+<label for="year">Yıl</label>
+<input id="year" max="2025" min="2000" required="" type="number"/>
+</div>
+
+<div class="form-group">
+<label for="fuel">Yakıt Tipi</label>
+<select id="fuel" required="">
+<option value="">Seçiniz</option>
+<option value="Benzin">Benzin</option>
+<option value="Dizel">Dizel</option>
+<option value="Hybrid">Hybrid</option>
+<option value="Elektrik">Elektrik</option>
+</select>
+</div>
+<div class="form-group">
+<label for="km">Kilometre</label>
+<input id="km" min="0" required="" type="number"/>
+</div>
+<div class="form-group">
+<label for="price">Fiyat (TL)</label>
+<input id="price" required="" type="number"/>
+</div>
+<div class="form-group">
+<label for="description">Açıklama</label>
+<textarea id="description" required=""></textarea>
+</div>
+<button class="btn btn-primary" type="submit">İlanı Oluştur</button>
+</form>
+</div>
+<footer class="footer">
+<div class="container">
+<p class="text-center">© 2025 Autozone</p>
+</div>
+</footer>
+<script>
+        document.getElementById("createListingForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const newCar = {
+                id: Date.now(),
+                brand: document.getElementById("brand").value,
+                model: document.getElementById("model").value,
+                year: parseInt(document.getElementById("year").value),
+                price: parseInt(document.getElementById("price").value),
+                km: parseInt(document.getElementById("km").value),
+                fuel: document.getElementById("fuel").value,
+                transmission: "Manuel",
+                city: "İstanbul",
+                district: "Kadıköy",
+                description: document.getElementById("description").value,
+                isFeatured: false,
+                phone: "0500 000 00 00",
+                seller: "Kullanıcı"
+            };
+
+            const userCars = JSON.parse(localStorage.getItem("userCars") || "[]");
+            userCars.push(newCar);
+            localStorage.setItem("userCars", JSON.stringify(userCars));
+
+            alert("İlan başarıyla eklendi!");
+            window.location.href = "listings.html";
+        });
+    </script>
+<script>
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        if (!currentUser) {
+            alert("İlan vermek için giriş yapmalısınız.");
+            window.location.href = "login.html";
+        }
+    </script>
+<script>
+        const user = JSON.parse(localStorage.getItem("currentUser"));
+        if (user) {
+            const nav = document.querySelector(".nav");
+            const welcome = document.createElement("span");
+            welcome.textContent = `👋 ${user.firstName}`;
+            welcome.style.marginLeft = "1rem";
+            nav.appendChild(welcome);
+        }
+    </script>
+<script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const user = JSON.parse(localStorage.getItem("currentUser"));
+            const navLinks = document.querySelector(".nav");
+
+            if (!navLinks) return;
+
+            if (user) {
+                const logoutLink = document.createElement("a");
+                logoutLink.href = "#";
+                logoutLink.className = "nav-link";
+                logoutLink.textContent = "Çıkış Yap";
+                logoutLink.addEventListener("click", () => {
+                    localStorage.removeItem("currentUser");
+                    alert("Çıkış yapıldı.");
+                    window.location.href = "index.html";
+                });
+
+                // “Giriş Yap” bağlantısını bulup onun yerine koy
+                const loginLink = [...navLinks.children].find(a => a.textContent.includes("Giriş Yap"));
+                if (loginLink) {
+        const registerLink = [...navLinks.children].find(a => a.textContent.includes("Üye Ol"));
+        if (registerLink) {
+            navLinks.removeChild(registerLink);
+        }
+
+                    navLinks.replaceChild(logoutLink, loginLink);
+                } else {
+                    navLinks.appendChild(logoutLink); // yedek
+                }
+            }
+        });
+    </script>
+<script src="js/script.js"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const brand = document.getElementById("brand");
+    if (brand) {
+        brand.addEventListener("change", updateModelOptions);
+        updateModelOptions(); // sayfa yüklenince tetikle
+    }
+});
+
+    </script>
+</body>
+</html>

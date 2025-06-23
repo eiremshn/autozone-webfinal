@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Üye Ol - Autozone</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+<div class="container">
+<div class="logo"><img alt="Logo" class="site-logo" src="images/logo.png"/></div>
+<nav class="nav">
+<a class="nav-link" href="index.html">Ana Sayfa</a>
+<a class="nav-link" href="listings.html">İlanlar</a>
+<a class="nav-link" href="login.html">Giriş Yap</a>
+<a class="nav-link active" href="register.html">Üye Ol</a>
+</nav>
+</div>
+</header>
+<!-- Register Section -->
+<section class="auth-section">
+<div class="container">
+<div class="auth-container">
+<div class="auth-header">
+<h1><i class="fas fa-user-plus"></i> Üye Ol</h1>
+<p>Ücretsiz hesap oluşturun ve ilan vermeye başlayın</p>
+</div>
+<form class="auth-form" id="registerForm" onsubmit="handleRegister(event)">
+<div class="form-row">
+<div class="form-group">
+<label for="firstName">
+<i class="fas fa-user"></i> Ad
+                            </label>
+<input id="firstName" name="firstName" placeholder="Adınız" required="" type="text"/>
+</div>
+<div class="form-group">
+<label for="lastName">
+<i class="fas fa-user"></i> Soyad
+                            </label>
+<input id="lastName" name="lastName" placeholder="Soyadınız" required="" type="text"/>
+</div>
+</div>
+<div class="form-group">
+<label for="email">
+<i class="fas fa-envelope"></i> E-posta Adresi
+                        </label>
+<input id="email" name="email" placeholder="ornek@email.com" required="" type="email"/>
+</div>
+<div class="form-group">
+<label for="phone">
+<i class="fas fa-phone"></i> Telefon Numarası
+                        </label>
+<input id="phone" name="phone" placeholder="0532 123 45 67" required="" type="tel"/>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="city">
+<i class="fas fa-map-marker-alt"></i> Şehir
+                            </label>
+<select id="city" name="city" required="">
+<option value="">Şehir Seçin</option>
+<option value="İstanbul">İstanbul</option>
+<option value="Ankara">Ankara</option>
+<option value="İzmir">İzmir</option>
+<option value="Bursa">Bursa</option>
+<option value="Antalya">Antalya</option>
+<option value="Adana">Adana</option>
+<option value="Konya">Konya</option>
+<option value="Gaziantep">Gaziantep</option>
+</select>
+</div>
+<div class="form-group">
+<label for="district">
+<i class="fas fa-map-pin"></i> İlçe
+                            </label>
+<select id="district" name="district" required="">
+<option value="">İlçe Seçin</option>
+<option value="x">x</option>
+<option value="y">y</option>
+<option value="z">z</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label for="password">
+<i class="fas fa-lock"></i> Şifre
+                        </label>
+<div class="password-input">
+<input id="password" name="password" placeholder="En az 6 karakter" required="" type="password"/>
+<button class="password-toggle" onclick="togglePassword('password')" type="button">
+<i class="fas fa-eye" id="passwordIcon"></i>
+</button>
+</div>
+<div class="password-strength" id="passwordStrength">
+<div class="strength-bar">
+<div class="strength-fill"></div>
+</div>
+<span class="strength-text">Şifre gücü</span>
+</div>
+</div>
+<div class="form-group">
+<label for="confirmPassword">
+<i class="fas fa-lock"></i> Şifre Tekrar
+                        </label>
+<div class="password-input">
+<input id="confirmPassword" name="confirmPassword" placeholder="Şifrenizi tekrar girin" required="" type="password"/>
+<button class="password-toggle" onclick="togglePassword('confirmPassword')" type="button">
+<i class="fas fa-eye" id="confirmPasswordIcon"></i>
+</button>
+</div>
+</div>
+<div class="form-options">
+<label class="checkbox-label">
+<input name="terms" required="" type="checkbox"/>
+<span class="checkmark"></span>
+<a href="#" target="_blank">Kullanım Şartları</a>'nı ve <a href="#" target="_blank">Gizlilik Politikası</a>'nı kabul ediyorum
+                        </label>
+</div>
+<div class="form-options">
+<label class="checkbox-label">
+<input name="newsletter" type="checkbox"/>
+<span class="checkmark"></span>
+                            E-posta ile güncellemeler almak istiyorum
+                        </label>
+</div>
+<button class="btn btn-primary btn-full" type="submit">
+<i class="fas fa-user-plus"></i> Üye Ol
+                    </button>
+</form>
+<div class="auth-divider">
+<span>veya</span>
+</div>
+<div class="auth-footer">
+<p>Zaten üye misiniz? <a href="login.html">Giriş yapın</a></p>
+</div>
+</div>
+<!-- Why Join -->
+<div class="auth-features">
+<h3>Neden Autozone'a Üye Olmalısınız?</h3>
+<div class="features-grid">
+<div class="feature-item">
+<i class="fas fa-shield-alt"></i>
+<h4>Güvenli Alışveriş</h4>
+<p>Tüm ilanlar doğrulanır ve güvenliğiniz önceliğimizdir</p>
+</div>
+<div class="feature-item">
+<i class="fas fa-users"></i>
+<h4>Geniş Topluluk</h4>
+<p>Binlerce üye ve günlük yüzlerce yeni ilan</p>
+</div>
+<div class="feature-item">
+<i class="fas fa-mobile-alt"></i>
+<h4>Mobil Uyumlu</h4>
+<p>Her yerden kolayca erişim ve ilan yönetimi</p>
+</div>
+<div class="feature-item">
+<i class="fas fa-headset"></i>
+<h4>7/24 Destek</h4>
+<p>Sorularınız için her zaman yanınızdayız</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="footer">
+<div class="container">
+<div class="footer-content">
+<div class="footer-section">
+<h3>Autozone</h3>
+<p>Türkiye'nin en güvenilir araba alım satım platformu</p>
+</div>
+<div class="footer-section">
+<h4>Hızlı Linkler</h4>
+<ul>
+<li><a href="index.html">Ana Sayfa</a></li>
+<li><a href="cars.html">İlanlar</a></li>
+<li><a href="login.html">Giriş Yap</a></li>
+<li><a href="register.html">Üye Ol</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4>İletişim</h4>
+<p><i class="fas fa-phone"></i> 0212 123 45 67</p>
+<p><i class="fas fa-envelope"></i> info@autozone.com</p>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2025 Autozone. Tüm hakları saklıdır.</p>
+</div>
+</div>
+</footer>
+<script src="js/script.js"></script>
+
+<script>
+        document.getElementById("registerForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+        
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+        
+            const user = {
+                email: email,
+                password: password,
+                firstName: document.getElementById("firstName").value,
+                lastName: document.getElementById("lastName").value
+            };
+        
+            let users = JSON.parse(localStorage.getItem("users") || "[]");
+        
+            const userExists = users.some(u => u.email === email);
+            if (userExists) {
+                alert("Bu e-posta ile zaten kayıt olunmuş.");
+                return;
+            }
+        
+            users.push(user);
+            localStorage.setItem("users", JSON.stringify(users));
+            localStorage.setItem("currentUser", JSON.stringify(user)); // Otomatik giriş
+        
+            alert("Kayıt başarılı! Giriş yapılıyor...");
+            window.location.href = "index.html";
+        });
+        </script>
+<script>
+            document.getElementById("registerForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+            
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+            
+                const user = {
+                    email: email,
+                    password: password,
+                    firstName: document.getElementById("firstName").value,
+                    lastName: document.getElementById("lastName").value
+                };
+            
+                let users = JSON.parse(localStorage.getItem("users") || "[]");
+            
+                const userExists = users.some(u => u.email === email);
+                if (userExists) {
+                    alert("Bu e-posta ile zaten kayıt olunmuş.");
+                    return;
+                }
+            
+                users.push(user);
+                localStorage.setItem("users", JSON.stringify(users));
+                localStorage.setItem("currentUser", JSON.stringify(user)); // Otomatik giriş
+            
+                alert("Kayıt başarılı! Giriş yapılıyor...");
+                window.location.href = "index.html";
+            });
+            </script>
+<script>
+                const user = JSON.parse(localStorage.getItem("currentUser"));
+                if (user) {
+                    const nav = document.querySelector(".nav");
+                    const welcome = document.createElement("span");
+                    welcome.textContent = `👋 ${user.firstName}`;
+                    welcome.style.marginLeft = "1rem";
+                    nav.appendChild(welcome);
+                }
+            </script>
+<script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  const user = JSON.parse(localStorage.getItem("currentUser"));
+                  const navLinks = document.querySelector(".nav");
+                
+                  if (!navLinks) return;
+                
+                  if (user) {
+                    const logoutLink = document.createElement("a");
+                    logoutLink.href = "#";
+                    logoutLink.className = "nav-link";
+                    logoutLink.textContent = "Çıkış Yap";
+                    logoutLink.addEventListener("click", () => {
+                      localStorage.removeItem("currentUser");
+                      alert("Çıkış yapıldı.");
+                      window.location.href = "index.html";
+                    });
+                
+                    // “Giriş Yap” bağlantısını bulup onun yerine koy
+                    const loginLink = [...navLinks.children].find(a => a.textContent.includes("Giriş Yap"));
+                    if (loginLink) {
+        const registerLink = [...navLinks.children].find(a => a.textContent.includes("Üye Ol"));
+        if (registerLink) {
+            navLinks.removeChild(registerLink);
+        }
+
+                      navLinks.replaceChild(logoutLink, loginLink);
+                    } else {
+                      navLinks.appendChild(logoutLink); // yedek
+                    }
+                  }
+                });
+                </script>
+</body>
+</html>

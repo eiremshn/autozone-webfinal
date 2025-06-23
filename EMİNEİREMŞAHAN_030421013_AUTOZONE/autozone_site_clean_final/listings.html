@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>İlanlar - Autozone</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo"><img alt="Logo" class="site-logo" src="images/logo.png" /></div>
+            <nav class="nav">
+                <a class="nav-link" href="index.html">Ana Sayfa</a>
+                <a class="nav-link active" href="listings.html">İlanlar</a>
+                <a class="nav-link" href="login.html">Giriş Yap</a>
+                <a class="nav-link" href="register.html">Üye Ol</a>
+            </nav>
+        </div>
+    </header>
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <br /> 
+            <h1><i class="fas fa-car"></i> Araç İlanları</h1>
+            <p>Binlerce araç ilanı arasından size en uygun olanı bulun</p>
+        </div>
+        <br />
+    </div>
+    <div class="container">
+        <div class="main-content">
+            <!-- Filters Sidebar -->
+            <aside class="sidebar">
+                <div class="filters">
+                    <h3><i class="fas fa-filter"></i> Filtreler</h3>
+                    <div class="filter-section">
+                        <h4>Marka &amp; Model</h4>
+                        <div class="form-group">
+                            <select id="filterBrand">
+                                <option value="">Tüm Markalar</option>
+                                <option value="Audi">Audi</option>
+                                <option value="BMW">BMW</option>
+                                <option value="Ford">Ford</option>
+                                <option value="Honda">Honda</option>
+                                <option value="Mercedes">Mercedes</option>
+                                <option value="Renault">Renault</option>
+                                <option value="Toyota">Toyota</option>
+                                <option value="Volkswagen">Volkswagen</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select id="filterModel">
+                                <option value="">Tüm Modeller</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="filter-section">
+                        <h4>Fiyat Aralığı</h4>
+                        <div class="price-inputs">
+                            <input id="minPrice" placeholder="Min Fiyat" type="number" />
+                            <input id="maxPrice" placeholder="Max Fiyat" type="number" />
+                        </div>
+                    </div>
+                    <div class="filter-section">
+                        <br />
+                        <h4>Yıl</h4>
+                        <div class="year-inputs">
+                            <select id="minYear">
+                                <option value="">Min Yıl</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                            </select>
+                            <select id="maxYear">
+                                <option value="">Max Yıl</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="filter-section">
+                        <br />
+                        <h4>Yakıt Tipi</h4>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="Benzin" /> Benzin</label>
+                            <label><input type="checkbox" value="Dizel" /> Dizel</label>
+                            <label><input type="checkbox" value="Hybrid" /> Hybrid</label>
+                            <label><input type="checkbox" value="Elektrik" /> Elektrik</label>
+                        </div>
+                    </div>
+                    <div class="filter-section">
+                        <br />
+                        <h4>Vites Tipi</h4>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="Manuel" /> Manuel</label>
+                            <label><input type="checkbox" value="Otomatik" /> Otomatik</label>
+                        </div>
+                    </div>
+                    <br />
+                    <button class="btn btn-primary btn-full" onclick="applyFilters()">
+                        <i class="fas fa-search"></i> Filtrele
+                    </button>
+                    <button class="btn btn-secondary btn-full" onclick="clearFilters()">
+                        <i class="fas fa-times"></i> Temizle
+                    </button>
+                </div>
+            </aside>
+            <!-- Cars Listing -->
+            <main class="content">
+                <div class="listing-header">
+                    <div class="sort-options">
+                        <label>Sırala:</label>
+                        <select id="sortBy">
+                            <option value="date">Tarihe Göre</option>
+                            <option value="price-asc">Fiyat (Artan)</option>
+                            <option value="price-desc">Fiyat (Azalan)</option>
+                            <option value="year-desc">Yıl (Yeni-Eski)</option>
+                            <option value="km-asc">KM (Az-Çok)</option>
+                        </select>
+
+                    </div>
+                    <br />
+
+                </div>
+                <div class="cars-listing cars-grid" id="carsListing"></div>
+            </main>
+        </div>
+        <div class="pagination" style="display: none;"></div>
+        <button class="btn btn-secondary" disabled="">
+            <i class="fas fa-chevron-left"></i> Önceki
+        </button>
+        <span class="page-numbers">
+            <button class="btn btn-primary">1</button>
+        </span>
+        <button class="btn btn-secondary">
+            Sonraki <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+
+
+    <!-- Car Detail Modal -->
+    <div class="modal" id="carModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Araç Detayları</h2>
+                <button class="close-btn" onclick="closeModal()">×</button>
+            </div>
+            <div id="modalBody">
+                <!-- Car details will be loaded here -->
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Autozone</h3>
+                    <p>Türkiye'nin en güvenilir araba alım satım platformu</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Hızlı Linkler</h4>
+                    <ul>
+                        <li><a href="index.html">Ana Sayfa</a></li>
+                        <li><a href="cars.html">İlanlar</a></li>
+                        <li><a href="login.html">Giriş Yap</a></li>
+                        <li><a href="register.html">Üye Ol</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <p><i class="fas fa-phone"></i> 0212 123 45 67</p>
+                    <p><i class="fas fa-envelope"></i> info@autozone.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Autozone. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/script.js"></script>
+    <script src="cars.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const brand = urlParams.get('brand');
+            const model = urlParams.get('model');
+            const year = urlParams.get('year');
+            const priceMin = urlParams.get('priceMin');
+            const priceMax = urlParams.get('priceMax');
+
+            let filtered = cars;
+
+            if (brand) filtered = filtered.filter(car => car.brand === brand);
+            if (model) filtered = filtered.filter(car => car.model === model);
+            if (year) filtered = filtered.filter(car => car.year.toString() === year);
+            if (priceMin) filtered = filtered.filter(car => car.price >= parseInt(priceMin));
+            if (priceMax) filtered = filtered.filter(car => car.price <= parseInt(priceMax));
+
+            document.getElementById('resultsCount').textContent = `${filtered.length} ilan bulundu`;
+
+            const container = document.getElementById('carsListing');
+            container.innerHTML = filtered.map(createCarCard).join('');
+        });
+    </script>
+    <script>
+        window.cars = cars;
+        document.addEventListener("DOMContentLoaded", function () {
+            let allCars = [...cars];
+
+            const userCars = JSON.parse(localStorage.getItem("userCars") || "[]");
+            allCars = allCars.concat(userCars);
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const brand = urlParams.get('brand');
+            const model = urlParams.get('model');
+            const year = urlParams.get('year');
+            const priceMin = urlParams.get('priceMin');
+            const priceMax = urlParams.get('priceMax');
+
+            let filtered = allCars;
+
+            if (brand) filtered = filtered.filter(car => car.brand === brand);
+            if (model) filtered = filtered.filter(car => car.model === model);
+            if (year) filtered = filtered.filter(car => car.year.toString() === year);
+            if (priceMin) filtered = filtered.filter(car => car.price >= parseInt(priceMin));
+            if (priceMax) filtered = filtered.filter(car => car.price <= parseInt(priceMax));
+
+            const container = document.getElementById('carsListing');
+            const countText = document.getElementById('resultsCount');
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<p style="padding: 2rem;">Aradığınız kriterlerde ilan bulunamadı.</p>`;
+                countText.textContent = "0 ilan bulundu";
+            } else {
+                container.innerHTML = filtered.map(createCarCard).join('');
+                countText.textContent = `${filtered.length} ilan bulundu`;
+            }
+        });
+    </script>
+    <script>
+        const user = JSON.parse(localStorage.getItem("currentUser"));
+        if (user) {
+            const nav = document.querySelector(".nav");
+            const welcome = document.createElement("span");
+            welcome.textContent = `👋 ${user.firstName}`;
+            welcome.style.marginLeft = "1rem";
+            nav.appendChild(welcome);
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const user = JSON.parse(localStorage.getItem("currentUser"));
+            const navLinks = document.querySelector(".nav");
+
+            if (!navLinks) return;
+
+            if (user) {
+                const logoutLink = document.createElement("a");
+                logoutLink.href = "#";
+                logoutLink.className = "nav-link";
+                logoutLink.textContent = "Çıkış Yap";
+                logoutLink.addEventListener("click", () => {
+                    localStorage.removeItem("currentUser");
+                    alert("Çıkış yapıldı.");
+                    window.location.href = "index.html";
+                });
+
+                // “Giriş Yap” bağlantısını bulup onun yerine koy
+                const loginLink = [...navLinks.children].find(a => a.textContent.includes("Giriş Yap"));
+                if (loginLink) {
+                    const registerLink = [...navLinks.children].find(a => a.textContent.includes("Üye Ol"));
+                    if (registerLink) {
+                        navLinks.removeChild(registerLink);
+                    }
+
+                    navLinks.replaceChild(logoutLink, loginLink);
+                } else {
+                    navLinks.appendChild(logoutLink); // yedek
+                }
+            }
+        });
+    </script>
+    <script>
+        window.cars = cars;
+        document.addEventListener("DOMContentLoaded", () => {
+            const localUserCars = JSON.parse(localStorage.getItem("userCars") || "[]");
+            const allCars = (window.cars || []).concat(localUserCars);
+
+            const container = document.getElementById("carsListing");
+            const countText = document.getElementById("resultsCount");
+
+            if (allCars.length === 0) {
+                container.innerHTML = "<p style='padding:2rem;'>Henüz hiç ilan yok.</p>";
+                countText.textContent = "0 ilan bulundu";
+                return;
+            }
+
+            container.innerHTML = allCars.map(createCarCard).join("");
+            countText.textContent = `${allCars.length} ilan bulundu`;
+
+            // İsteğe bağlı: Sayfa başına X ilan göster, sayfalama yap (şimdilik sabit gösteriyoruz)
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const userCars = JSON.parse(localStorage.getItem("userCars") || "[]");
+            const allCars = (window.cars || []).concat(userCars);
+
+            const container = document.getElementById("carsListing");
+            const countText = document.getElementById("resultsCount");
+
+            if (allCars.length === 0) {
+                container.innerHTML = "<p style='padding:2rem;'>Henüz hiç ilan yok.</p>";
+                countText.textContent = "0 ilan bulundu";
+                return;
+            }
+
+            container.innerHTML = allCars.map(createCarCard).join("");
+            countText.textContent = `${allCars.length} ilan bulundu`;
+        });
+    </script>
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const baseCars = typeof cars !== 'undefined' ? cars : [];
+            const userCars = JSON.parse(localStorage.getItem("userCars") || "[]");
+            const allCars = baseCars.concat(userCars);
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const brand = urlParams.get('brand');
+            const model = urlParams.get('model');
+            const year = urlParams.get('year');
+            const priceMin = urlParams.get('priceMin');
+            const priceMax = urlParams.get('priceMax');
+
+            let filtered = allCars;
+
+            if (brand) filtered = filtered.filter(car => car.brand === brand);
+            if (model) filtered = filtered.filter(car => car.model === model);
+            if (year) filtered = filtered.filter(car => car.year.toString() === year);
+            if (priceMin) filtered = filtered.filter(car => car.price >= parseInt(priceMin));
+            if (priceMax) filtered = filtered.filter(car => car.price <= parseInt(priceMax));
+
+            const container = document.getElementById("carsListing");
+            const countText = document.getElementById("resultsCount");
+
+            if (filtered.length === 0) {
+                container.innerHTML = "<p style='padding:2rem;'>Henüz hiç ilan yok.</p>";
+                countText.textContent = "0 ilan bulundu";
+            } else {
+                container.innerHTML = filtered.map(createCarCard).join("");
+                countText.textContent = `${filtered.length} ilan bulundu`;
+            }
+        });
+    </script>
+    <script>
+        const userCars = JSON.parse(localStorage.getItem("userCars") || "[]");
+        const allCars = (window.cars || []).concat(userCars);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const brand = urlParams.get('brand');
+        const model = urlParams.get('model');
+        const year = urlParams.get('year');
+        const priceMin = urlParams.get('priceMin');
+        const priceMax = urlParams.get('priceMax');
+
+        let filtered = allCars;
+
+        if (brand) filtered = filtered.filter(car => car.brand === brand);
+        if (model) filtered = filtered.filter(car => car.model === model);
+        if (year) filtered = filtered.filter(car => car.year.toString() === year);
+        if (priceMin) filtered = filtered.filter(car => car.price >= parseInt(priceMin));
+        if (priceMax) filtered = filtered.filter(car => car.price <= parseInt(priceMax));
+
+        document.getElementById("carsListing").innerHTML = filtered.map(createCarCard).join('');
+        document.getElementById("resultsCount").textContent = `${filtered.length} ilan bulundu`;
+
+    </script>
+</body>
+
+</html>
